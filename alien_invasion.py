@@ -7,8 +7,6 @@ from alien import Alien
 from bullet import Bullet
 
 
-
-
 def run_game():
     # 初始化游戏并创建一个屏幕对象
     pygame.init()
@@ -33,7 +31,7 @@ def run_game():
     aliens = Group()
 
     # 创建外星人群
-    gf.create_fleet(ai_settings, screen, aliens)
+    gf.create_fleet(ai_settings, screen, ship, aliens)
 
     # 开始游戏的主循环
     while True:
