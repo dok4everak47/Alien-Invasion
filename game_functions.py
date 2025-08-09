@@ -3,6 +3,7 @@ import sys
 import pygame
 
 from bullet import Bullet
+from alien import Alien
 
 
 def check_events(ai_settings, screen, ship, bullets):
@@ -16,7 +17,7 @@ def check_events(ai_settings, screen, ship, bullets):
             check_keyup_events(event, ship)
 
 
-def update_screen(ai_settings, screen, ship, bullets):
+def update_screen(ai_settings, screen, ship, aliens, bullets):
 
     screen.fill(ai_settings.bg_color)
 
@@ -25,6 +26,7 @@ def update_screen(ai_settings, screen, ship, bullets):
         bullet.draw_bullet()
 
     ship.blitme()
+    aliens.draw(screen)
 
     pygame.display.flip()
 
@@ -57,3 +59,17 @@ def check_keyup_events(event, ship):
 
 
 # end def
+
+
+def create_fleet(ai_settings, screen, aliens):
+    """创建外星人群"""
+    alien = Alien(ai_settings, screen)
+    alien_width = alien.rect.width
+    available_space_x = ai_settings.screen_width - 2 * alien_width
+    number_aliens_x = int(available_space_x / (2 * alien_width))
+
+    for alien_number in range(number_aliens_x):
+        alien = Alien(ai_settings, screen)
+        alien.x = alien_width + 2 * alien_width * alien_number
+        alien.rect.x = alien.x
+        aliens.add(alien)
