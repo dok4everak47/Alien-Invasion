@@ -29,21 +29,12 @@ def update_screen(ai_settings, screen, ship, bullets):
     pygame.display.flip()
 
 
-<<<<<<< HEAD
 def check_keydown_events(event, ai_settings, screen, ship, bullets):
     """响应按键按下事件，设置飞船移动标志"""
-=======
-def check_keydown_events(event, ship):
-    """
-    Purpose:
-    """
-
->>>>>>> parent of d4f537d (增加上下移动)
     if event.key == pygame.K_RIGHT:
         ship.moving_right = True
     elif event.key == pygame.K_LEFT:
         ship.moving_left = True
-<<<<<<< HEAD
     elif event.key == pygame.K_UP:
         ship.moving_up = True
     elif event.key == pygame.K_DOWN:
@@ -51,22 +42,18 @@ def check_keydown_events(event, ship):
     elif event.key == pygame.K_SPACE:
         new_bullet = Bullet(ai_settings, screen, ship)
         bullets.add(new_bullet)
-=======
-
-
-# end def
->>>>>>> parent of d4f537d (增加上下移动)
 
 
 def check_keyup_events(event, ship):
-    """
-    Purpose:
-    """
-
+    """响应按键释放事件"""
     if event.key == pygame.K_RIGHT:
         ship.moving_right = False
     elif event.key == pygame.K_LEFT:
         ship.moving_left = False
+    elif event.key == pygame.K_UP:
+        ship.moving_up = False
+    elif event.key == pygame.K_DOWN:
+        ship.moving_down = False
 
 
 # end def

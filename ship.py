@@ -17,19 +17,35 @@ class Ship:
         self.rect.centerx = self.screen_rect.centerx
         self.rect.bottom = self.screen_rect.bottom
 
+        # Store decimal values for the ship's center
+        self.centerx = float(self.rect.centerx)
+        self.centery = float(self.rect.centery)
+
         self.center = float(self.rect.centerx)
 
         # 移动标志
         self.moving_right = False
         self.moving_left = False
+        self.moving_up = False
+        self.moving_down = False
 
     def update(self):
+        """Update the ship's position based on movement flags."""
+        # Update horizontal position
         if self.moving_right and self.rect.right < self.screen_rect.right:
-            self.center += self.ai_settings.ship_speed_factor
+            self.centerx += self.ai_settings.ship_speed_factor
         if self.moving_left and self.rect.left > 0:
-            self.center -= self.ai_settings.ship_speed_factor
+            self.centerx -= self.ai_settings.ship_speed_factor
 
-        self.rect.centerx = self.center
+        # Update vertical position
+        if self.moving_up and self.rect.top > 0:
+            self.centery -= self.ai_settings.ship_speed_factor
+        if self.moving_down and self.rect.bottom < self.screen_rect.bottom:
+            self.centery += self.ai_settings.ship_speed_factor
+
+        # Update rect object from self.centerx and self.centery
+        self.rect.centerx = self.centerx
+        self.rect.centery = self.centery
 
     def blitme(self):
         """Draw the ship at its current location."""
