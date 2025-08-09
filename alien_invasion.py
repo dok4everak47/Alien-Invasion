@@ -38,14 +38,9 @@ def run_game():
         # 监视键盘和鼠标事件
         gf.check_events(ai_settings, screen, ship, bullets)
         ship.update()
-        bullets.update()
+        gf.update_bullets(aliens, bullets)
 
-        # 删除已消失的子弹
-        for bullet in bullets.copy():
-            if bullet.rect.bottom <= 0:
-                bullets.remove(bullet)
-            print(len(bullets))
-
+        # 让外星人移动
         gf.update_aliens(ai_settings, aliens)
 
         # 每次循环都重绘屏幕
